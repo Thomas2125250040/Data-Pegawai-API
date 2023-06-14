@@ -1,0 +1,26 @@
+### Getting all contacts
+GET http://localhost:3000/
+
+### Posting a new contact
+POST http://localhost:3000/
+Content-Type: application/json
+
+{
+    "name": "Thomas Syuu",
+    "phone_number": "0896",
+    "gender": "Laki-laki"
+}
+###
+
+PATCH http://localhost:3000/648740ad57c36d4242b64246
+Content-Type: application/json
+
+{
+    "name": "Bebin Paula"
+}
+
+### Delete
+DELETE http://localhost:3000/648740ad57c36d4242b64246
+
+### auth
+POST http://192.168.144.154:3000/auth/register

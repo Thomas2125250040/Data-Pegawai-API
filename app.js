@@ -1,28 +1,43 @@
-require('dotenv').config();
-const express = require('express');
+const express = require("express");
 const app = express();
-const mongoose = require('mongoose');
-const router = require('./routes/ContactRouter');
-const authRoutes = require('./routes/auth');
-
-main().then(console.log('Connected to MongoDb')).catch(err => console.log(err));
-
-async function main() {
-  await mongoose.connect(process.env.DB_CONNECTION, {
-    dbName: 'contactdb',
-    user: 'root',
-    pass: 'root',
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
-}
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 const cors = require("cors");
-app.use(express.json())
-app.use(express.urlencoded({extended: true}))
+require("dotenv").config();
 
-app.use('/auth', authRoutes);
-app.use(router);
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
+app.use(bodyParser.json());
+app.use(cors());
 
-app.listen(process.env.port, '0.0.0.0',() => {
-    console.log(`App listen on ${process.env.port}`);
+// import routes 
+const authRoutes = require('./routes/auth')
+const postRoutes = require('./routes/post')
+
+app.use('/auth', authRoutes)
+app.use('/post', postRoutes)
+
+mongoose.connect(process.env.DB_CONNECTION, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+let db = mongoose.connection;
+
+//handle error
+db.on(
+  "error",
+  console.error.bind(console, "Error establishing a database connection")
+);
+
+//handle successs
+db.once("open", () => {
+  console.log("Database is connected");
+});
+
+app.listen(process.env.port,"0.0.0.0", () => {
+  console.log(`Server running on port ${process.env.PORT}`);
 });

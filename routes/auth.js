@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 
 const User = require("../models/User");
+
 // import validation
 const { registerValidation, loginValidation } = require("../config/validation");
 

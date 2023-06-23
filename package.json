@@ -1,24 +1,31 @@
 {
-  "name": "contact-api",
+  "name": "pab2-api",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon ./app.js",
+    "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Thomas2125250040/PAB2-API.git"
   },
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Thomas2125250040/PAB2-API/issues"
+  },
+  "homepage": "https://github.com/Thomas2125250040/PAB2-API#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
-    "dotenv": "^16.1.4",
+    "dotenv": "^16.1.1",
     "express": "^4.18.2",
     "joi": "^17.9.2",
-    "mongoose": "^7.2.3"
-  },
-  "devDependencies": {
+    "moment": "^2.29.4",
+    "mongoose": "^7.2.2",
     "nodemon": "^2.0.22"
   }
 }
